@@ -24,11 +24,11 @@
                         <tr class="border-b border-dashed last:border-b-0">
                             <td class="p-3 pl-0">
                                 <div class="flex items-center">
-                                    <a href="/" class="mb-1 font-semibold text-start transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> {{ $site->name }} </a>
+                                    <a href="/" class="transition ease-in-out delay-150 hover:scale-105 mb-1 text-start duration-200 text-lg/normal text-secondary-inverse hover:text-primary"> {{ $site->name }} </a>
                                 </div>
                             </td>
                         <td class="p-3 pl-0 text-start">
-                            <span class="font-semibold text-light-inverse text-md/normal">{{ $site->category->name }}</span>
+                            <span class="text-light-inverse text-md/normal">{{ $site->category->name }}</span>
                         </td>
                         <td class="flex justify-end p-3 pr-0 text-end gap-3">
                             <a href="{{ route('sites.show', $site) }}">
