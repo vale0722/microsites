@@ -17,7 +17,7 @@ class CreateSiteTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)
-            ->get(route('sites.create'));
+            ->get(route('admin.sites.create'));
 
         $response->assertOk();
         $response->assertViewIs('sites.create');
@@ -31,13 +31,12 @@ class CreateSiteTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)
-            ->post(route('sites.store'), $site->toArray());
+            ->post(route('admin.sites.store'), $site->toArray());
 
-        $response->assertRedirect(route('sites.index'));
+        $response->assertRedirect(route('admin.sites.index'));
 
         $this->assertDatabaseHas('sites', [
             'name' => $site->name,
-            'slug' => $site->slug
         ]);
     }
 
@@ -46,13 +45,13 @@ class CreateSiteTest extends TestCase
         $site = Site::factory()
             ->for(Category::factory()->create())
             ->make();
-        $site->slug = null;
+        $site->document = null;
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)
-            ->post(route('sites.store'), $site->toArray());
+            ->post(route('admin.sites.store'), $site->toArray());
 
-        $response->assertInvalid(['slug']);
+        $response->assertInvalid(['document']);
 
         $this->assertDatabaseMissing('sites', [
             'name' => $site->name,

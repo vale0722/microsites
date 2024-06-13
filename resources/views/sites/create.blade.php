@@ -5,14 +5,14 @@
                 {{ trans('sites.store') }}
             </h2>
 
-            <a href="{{ route('sites.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
+            <a href="{{ route('admin.sites.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
                 <em class="fa-solid fa-arrow-left"></em>
             </a>
         </div>
     </x-slot>
     <div class="flex w-full justify-center my-4">
         <div class="container align-middle p-4 sm:p-6 lg:p-8 bg-white">
-            <form action="{{ route('sites.store') }}" method="POST">
+            <form action="{{ route('admin.sites.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
                     <label for="category_id" class="block text-gray-700">{{ trans('sites.category') }}</label>

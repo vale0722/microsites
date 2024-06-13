@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Sites
             </h2>
-            <a href="{{ route('sites.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
+            <a href="{{ route('admin.sites.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
                 <em class="fa-solid fa-plus"></em>
             </a>
         </div>
@@ -31,13 +31,13 @@
                             <span class="text-light-inverse text-md/normal">{{ $site->category->name->text() }}</span>
                         </td>
                         <td class="flex justify-end p-3 pr-0 text-end gap-3">
-                            <a href="{{ route('sites.show', $site) }}">
+                            <a href="{{ route('admin.sites.show', $site) }}">
                                 <em class="fa-solid fa-eye"></em>
                             </a>
-                            <a href="{{ route('sites.edit', $site) }}">
+                            <a href="{{ route('admin.sites.edit', $site) }}">
                                 <em class="fa-solid fa-pencil"></em>
                             </a>
-                            <form action="{{ route('sites.destroy', $site) }}" method="POST" class="inline-block" onsubmit="return confirmDeletion()">
+                            <form action="{{ route('admin.sites.destroy', $site) }}" method="POST" class="inline-block" onsubmit="return confirmDeletion()">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-800">

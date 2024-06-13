@@ -34,7 +34,7 @@ class SiteController extends Controller
     public function store(StoreSiteRequest $request, StoreAction $storeAction): RedirectResponse
     {
         $storeAction->execute($request->validated());
-        return redirect()->route('sites.index');
+        return redirect()->route('admin.sites.index');
     }
 
     public function show(Site $site): View
@@ -45,6 +45,6 @@ class SiteController extends Controller
     public function destroy(Site $site, DeleteAction $deleteAction): RedirectResponse
     {
         $deleteAction->execute($site);
-        return redirect()->route('sites.index');
+        return redirect()->route('admin.sites.index');
     }
 }

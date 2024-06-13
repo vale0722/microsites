@@ -23,7 +23,7 @@ class IndexSiteTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)
-            ->get(route('sites.index'));
+            ->get(route('admin.sites.index'));
 
         $response->assertOk();
         $response->assertViewIs('sites.index');
@@ -40,7 +40,7 @@ class IndexSiteTest extends TestCase
                 'name' => 'Mi Comercio'
             ]);
 
-        $response = $this->get(route('sites.index'));
+        $response = $this->get(route('admin.sites.index'));
 
         $response->assertRedirect(route('login'));
     }
