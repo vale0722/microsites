@@ -10,7 +10,6 @@ class StoreAction
     {
         $site = new Site();
         $site->category_id = $data['category_id'];
-        $site->slug = $data['slug'];
         $site->name = $data['name'];
         $site->document_type = $data['document_type'];
         $site->document = $data['document'];

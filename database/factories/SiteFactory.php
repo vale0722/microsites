@@ -12,7 +12,6 @@ class SiteFactory extends Factory
     {
         return [
             'category_id' => Category::all()->random()->id,
-            'slug' => fake()->unique()->text(20),
             'name' => fake()->company(),
             'document_type' => fake()->randomElement(array_column(DocumentTypes::cases(), 'name')),
             'document' => fake()->randomNumber(9),

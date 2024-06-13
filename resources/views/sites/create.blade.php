@@ -26,13 +26,6 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="slug" class="block text-gray-700">{{ trans('sites.slug') }}</label>
-                    <input type="text" name="slug" id="slug" class="w-full border-gray-300 rounded" required>
-                    @error('slug')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-4">
                     <label for="name" class="block text-gray-700">{{ trans('sites.name') }}</label>
                     <input type="text" name="name" id="name" class="w-full border-gray-300 rounded" required>
                     @error('name')

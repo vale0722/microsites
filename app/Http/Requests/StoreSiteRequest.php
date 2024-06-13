@@ -15,7 +15,6 @@ class StoreSiteRequest extends FormRequest
     {
         return [
             'category_id' => 'required',
-            'slug' => 'required|max:50|unique:sites',
             'name' => 'required|max:100',
             'document_type' => 'required',
             'document' => 'required|max:20',
