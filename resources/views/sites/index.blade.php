@@ -28,7 +28,7 @@
                                 </div>
                             </td>
                         <td class="p-3 pl-0 text-start">
-                            <span class="text-light-inverse text-md/normal">{{ $site->category->name }}</span>
+                            <span class="text-light-inverse text-md/normal">{{ $site->category->name->text() }}</span>
                         </td>
                         <td class="flex justify-end p-3 pr-0 text-end gap-3">
                             <a href="{{ route('sites.show', $site) }}">

@@ -18,7 +18,7 @@
                     <label for="category_id" class="block text-gray-700">{{ trans('sites.category') }}</label>
                     <select name="category_id" id="category_id" class="w-full border-gray-300 rounded" required>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}">{{ $category->name->text() }}</option>
                         @endforeach
                     </select>
                     @error('category_id')
