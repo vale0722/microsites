@@ -27,19 +27,27 @@
                             </div>
                         </td>
                         <td class="flex justify-end p-3 pr-0 text-end gap-3">
-                            <a href="{{ route('categories.show', $category) }}">
-                                <em class="fa-solid fa-eye"></em>
-                            </a>
-                            <a href="{{ route('categories.edit', $category) }}">
-                                <em class="fa-solid fa-pencil"></em>
-                            </a>
-                            <form action="{{ route('categories.destroy', $category) }}" method="POST" class="inline-block" onsubmit="return confirmDeletion()">
+                            @can(\App\Constants\PermissionSlug::CATEGORIES_VIEW)
+                                <a href="{{ route('categories.show', $category) }}">
+                                    <em class="fa-solid fa-eye"></em>
+                                </a>
+                            @endcan
+
+                            @can(\App\Constants\PermissionSlug::CATEGORIES_UPDATE)
+                                <a href="{{ route('categories.edit', $category) }}">
+                                    <em class="fa-solid fa-pencil"></em>
+                                </a>
+                            @endcan
+
+                                @can(\App\Constants\PermissionSlug::CATEGORIES_DELETE)
+                                <form action="{{ route('categories.destroy', $category) }}" method="POST" class="inline-block" onsubmit="return confirmDeletion()">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-800">
                                     <em class="fa-solid fa-trash"></em>
                                 </button>
-                            </form>
+                                </form>
+                                @endcan
                         </td>
                     </tr>
                 @endforeach

@@ -19,7 +19,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
+        User::factory()->create([
+            'name' => 'Cliente',
+            'email' => 'cliente@example.com',
+        ]);
+
         $this->call(CategorySeeder::class);
         $this->call(SiteSeeder::class);
+        $this->call(RolesSeeder::class);
+        $this->call(PermissionsSeeder::class);
+        $this->call(DefaultRolesAndPermissonsSeeder::class);
     }
 }

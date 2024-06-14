@@ -15,12 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('sites.index')" :active="request()->routeIs('sites.index')">
-                        {{ trans('sites.title') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
-                        {{ trans('categories.title') }}
-                    </x-nav-link>
+                    @can(\App\Constants\PermissionSlug::SITES_VIEW_ANY)
+                        <x-nav-link :href="route('sites.index')" :active="request()->routeIs('sites.index')">
+                            {{ trans('sites.title') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can(\App\Constants\PermissionSlug::CATEGORIES_VIEW_ANY)
+                        <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                            {{ trans('categories.title') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
