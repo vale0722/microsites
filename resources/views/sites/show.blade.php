@@ -15,7 +15,7 @@
                 <p class="text-gray-900">{{ $site->slug }}</p>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700">{{ trans('sites.name') }}</label>
+                <label class="block text-gray-700">{{ trans('general.name') }}</label>
                 <p class="text-gray-900">{{ $site->name }}</p>
             </div>
             <div class="mb-4">
@@ -27,15 +27,15 @@
                 <p class="text-gray-900">{{ $site->document }}</p>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700">{{ trans('sites.status') }}</label>
+                <label class="block text-gray-700">{{ trans('general.status') }}</label>
                 <p class="text-gray-900">{{trans('sites.' . $site->enabled_at ? 'enabled' : 'disabled') }}</p>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700">{{ trans('sites.created_at') }}</label>
+                <label class="block text-gray-700">{{ trans('general.created_at') }}</label>
                 <p class="text-gray-900">{{ $site->created_at }}</p>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700">{{ trans('sites.updated_at') }}</label>
+                <label class="block text-gray-700">{{ trans('general.updated_at') }}</label>
                 <p class="text-gray-900">{{ $site->updated_at }}</p>
             </div>
         </div>
