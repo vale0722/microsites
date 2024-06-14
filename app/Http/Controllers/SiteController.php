@@ -15,6 +15,8 @@ class SiteController extends Controller
 {
     public function index(): View
     {
+        $this->authorize('viewAny', Site::class);
+
         $sites = Site::query()
             ->select(['id', 'slug', 'name', 'category_id'])
             ->with('category:id,name')
@@ -28,23 +30,28 @@ class SiteController extends Controller
     {
         $categories = Category::query()->select(['id', 'name'])->get();
         $documentTypes = DocumentTypes::cases();
+
         return view('sites.create', compact('categories', 'documentTypes'));
     }
 
     public function store(StoreSiteRequest $request, StoreAction $storeAction): RedirectResponse
     {
         $storeAction->execute($request->validated());
+
         return redirect()->route('admin.sites.index');
     }
 
     public function show(Site $site): View
     {
+        $this->authorize('view', $site);
+
         return view('sites.show', compact('site'));
     }
 
     public function destroy(Site $site, DeleteAction $deleteAction): RedirectResponse
     {
         $deleteAction->execute($site);
+
         return redirect()->route('admin.sites.index');
     }
 }
