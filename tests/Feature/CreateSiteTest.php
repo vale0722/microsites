@@ -55,7 +55,7 @@ class CreateSiteTest extends TestCase
 
         $this->assertDatabaseMissing('sites', [
             'name' => $site->name,
-            'slug' => $site->slug
+            'slug' => $site->slug,
         ]);
     }
 }

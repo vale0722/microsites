@@ -17,7 +17,7 @@ class IndexSiteTest extends TestCase
         Site::factory()
             ->for(Category::factory()->create())
             ->create([
-                'name' => 'Mi Comercio'
+                'name' => 'Mi Comercio',
             ]);
 
         $user = User::factory()->create();
@@ -31,13 +31,12 @@ class IndexSiteTest extends TestCase
         $response->assertSee('Mi Comercio');
     }
 
-
     public function testAnUnauthenticatedUserCannotViewListSites(): void
     {
         Site::factory()
             ->for(Category::factory()->create())
             ->create([
-                'name' => 'Mi Comercio'
+                'name' => 'Mi Comercio',
             ]);
 
         $response = $this->get(route('admin.sites.index'));
