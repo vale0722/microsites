@@ -45,11 +45,7 @@ class PaymentServiceTest extends TestCase
         $this->assertEquals('https://google.com', $response->url);
     }
 
-    /**
-     * Mocks: Used to verify interactions between objects.
-     *
-     * @test
-     */
+    /** @test */
     public function itProcessPaymentSuccessfullyUsingMocks(): void
     {
         $payment = Payment::factory()->create();
@@ -62,6 +58,7 @@ class PaymentServiceTest extends TestCase
             'document_type' => DocumentTypes::CC->name,
         ];
 
+        // Mocks: Used to verify interactions between objects.
         $placetopay = $this->createMock(PlacetoPayGateway::class);
         $placetopay->expects($this->once())
             ->method('prepare')
@@ -84,11 +81,7 @@ class PaymentServiceTest extends TestCase
         $paymentService->create($data);
     }
 
-    /**
-     * Stubs: Used to return predetermined responses.
-     *
-     * @test
-     */
+    /** @test */
     public function itProcessPaymentSuccessfullyUsingStubs(): void
     {
         $payment = Payment::factory()->create();
@@ -101,6 +94,7 @@ class PaymentServiceTest extends TestCase
             'document_type' => DocumentTypes::CC->name,
         ];
 
+        // Stubs: Used to return predetermined responses.
         $placetopay = $this->createStub(PlacetoPayGateway::class);
         $placetopay->method('prepare')
             ->willReturnSelf();

@@ -48,7 +48,8 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ],
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "test": "XDEBUG_MODE=off vendor/bin/phpunit"
     },
     "extra": {
         "laravel": {
