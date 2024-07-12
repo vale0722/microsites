@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Site;
-use Illuminate\View\View;
 use App\Constants\Currency;
 use App\Constants\DocumentTypes;
 use App\Constants\PaymentGateway;
+use App\Models\Site;
+use Illuminate\View\View;
 
 class WelcomeController extends Controller
 {
