@@ -1,6 +1,8 @@
 <?php
 
 use App\Constants\Currency;
+use App\Constants\PaymentGateway;
+use App\Constants\PaymentStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,11 +20,19 @@ return new class extends Migration
             $table->string('description', 100);
             $table->unsignedBigInteger('amount');
             $table->enum('currency', Currency::toArray());
+            $table->enum('status', PaymentStatus::toArray());
+            $table->enum('gateway', PaymentGateway::toArray());
+            $table->unsignedInteger('process_identifier')->nullable();
 
             $table->foreignId('site_id');
             $table->foreign('site_id')
                 ->references('id')
                 ->on('sites');
+
+            $table->foreignId('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
 
             $table->timestamps();
         });
