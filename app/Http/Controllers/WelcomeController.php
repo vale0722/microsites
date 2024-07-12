@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Constants\Currency;
 use App\Models\Site;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Constants\Currency;
+use App\Constants\DocumentTypes;
+use App\Constants\PaymentGateway;
 
 class WelcomeController extends Controller
 {
@@ -14,6 +15,8 @@ class WelcomeController extends Controller
         return view('welcome', [
             'sites' => Site::all(),
             'currencies' => Currency::toArray(),
+            'documentTypes' => DocumentTypes::toArray(),
+            'gateways' => PaymentGateway::toOptions(),
         ]);
     }
 }

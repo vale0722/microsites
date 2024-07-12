@@ -2,13 +2,13 @@
 
 namespace App\Constants;
 
-enum Currency: string
+enum Currency
 {
-    case USD = 'USD';
-    case COP = 'COP';
+    case COP;
+    case USD;
 
     public static function toArray(): array
     {
-        return array_column(self::cases(), 'value');
+        return array_column(self::cases(), 'name');
     }
 }

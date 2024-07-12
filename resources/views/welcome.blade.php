@@ -1,17 +1,5 @@
 <x-guest-layout>
     <div class="container mx-auto">
-        <header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-4">
-            <nav class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
-                aria-label="Global">
-                <a class="flex-none text-xl font-semibold" href="#">LaraPay</a>
-                <div class="flex flex-row items-center gap-5 mt-5 sm:justify-end sm:mt-0 sm:ps-5">
-                    <a class="font-medium text-blue-500" href="#" aria-current="page">Zona de pagos</a>
-                    <a class="font-medium text-gray-600 hover:text-gray-400"
-                        href="#">Iniciar sesión</a>
-                </div>
-            </nav>
-        </header>
-
         <div class="flex justify-center">
             <div class="flex w-1/2 flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 max-w-50 mt-10">
                 <h3 class="text-lg font-bold text-gray-800">
@@ -20,27 +8,29 @@
                 <p class="mt-1 mb-4 text-xs font-medium uppercase text-gray-500">
                     Realiza todas tus donaciones de forma segura.
                 </p>
-                <form action="">
+                <form action="{{ route('payments.store') }}" method="POST">
+                    @csrf
+
                     <div class="space-y-3 mb-4">
-                        <textarea class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" rows="2">Mi donación a esta vaca para contribuir a la formación de desarrolladores PHP</textarea>
+                        <textarea name="description" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" rows="2">Mi donación a esta vaca para contribuir a la formación de desarrolladores PHP</textarea>
                     </div>
                     <div class="space-y-3 mb-4">
-                        <input required type="number" min="1000" max="999999999999" value="10000"
+                        <input required type="number" min="1" max="999999999999" value="10000" name="amount"
                             class="py-3 px-4 block min-w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="Digita el valor a pagar">
                     </div>
-                    <select required
+                    <select required name="site_id"
                         class="mb-4 py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                         <option>Sitios disponibles</option>
                         @foreach ($sites as $site)
-                        <option @selected($loop->first) value="{{ $site->id }}">{{ $site->name }}</option>
+                            <option @selected($loop->first) value="{{ $site->id }}">{{ $site->name }}</option>
                         @endforeach
                     </select>
-                    <select required
+                    <select required name="currency"
                         class="mb-4 py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                         <option>Moneda</option>
                         @foreach ($currencies as $currency)
-                        <option @selected($loop->first) value="{{ $currency }}">{{ $currency }}</option>
+                            <option @selected($loop->first) value="{{ $currency }}">{{ $currency }}</option>
                         @endforeach
                     </select>
 
@@ -49,34 +39,43 @@
                     </p>
 
                     <div class="space-y-3 mb-4">
-                        <input required type="text" value="John"
+                        <input required type="text" value="John" name="name"
                             class="py-3 px-4 block min-w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="Tu nombre">
                     </div>
 
                     <div class="space-y-3 mb-4">
-                        <input required type="text" value="Doe"
+                        <input required type="text" value="Doe" name="last_name"
                             class="py-3 px-4 block min-w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="Tu apellido">
                     </div>
 
                     <div class="space-y-3 mb-4">
-                        <input required type="text" value="john.doe@ghostmail.com"
+                        <input required type="text" value="john.doe@ghostmail.com" name="email"
                             class="py-3 px-4 block min-w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="Tu correo">
                     </div>
 
                     <div class="space-y-3 mb-4">
-                        <input required type="text" value="10025553366"
+                        <input required type="text" value="10025553366" name="document_number"
                             class="py-3 px-4 block min-w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="Tu número de documento">
                     </div>
 
-                    <select required
+                    <select required name="document_type"
                         class="mb-4 py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                         <option>Tipo de documento</option>
-                        <option selected value="CC">CC</option>
-                        <option value="CE">CE</option>
+                        @foreach ($documentTypes as $documentType)
+                            <option @selected($loop->first) value="{{ $documentType }}">{{ $documentType }}</option>
+                        @endforeach
+                    </select>
+
+                    <select required name="gateway"
+                        class="mb-4 py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+                        <option>Pasarela de pago</option>
+                        @foreach ($gateways as $gateway)
+                            <option @selected($loop->first) value="{{ $gateway['value'] }}">{{ $gateway['text'] }}</option>
+                        @endforeach
                     </select>
 
                     <button type="submit" type="button"
