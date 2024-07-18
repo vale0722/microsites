@@ -2,65 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Sites\DeleteAction;
+use App\Actions\Sites\StoreAction;
+use App\Constants\DocumentTypes;
 use App\Http\Requests\StoreSiteRequest;
-use App\Http\Requests\UpdateSiteRequest;
+use App\Models\Category;
 use App\Models\Site;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $sites = Site::query()
+            ->select(['id', 'slug', 'name', 'category_id'])
+            ->with('category:id,name')
+            ->orderBy('name')
+            ->get();
+
+        return view('sites.index', compact('sites'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        $categories = Category::query()->select(['id', 'name'])->get();
+        $documentTypes = DocumentTypes::cases();
+        return view('sites.create', compact('categories', 'documentTypes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreSiteRequest $request)
+    public function store(StoreSiteRequest $request, StoreAction $storeAction): RedirectResponse
     {
-        //
+        $storeAction->execute($request->validated());
+        return redirect()->route('sites.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Site $site)
+    public function edit(Site $site): View
     {
-        //
+        $categories = Category::query()->select(['id', 'name'])->get();
+        $documentTypes = DocumentTypes::cases();
+        return view('sites.create', compact('categories','site', 'documentTypes'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Site $site)
+    public function update(Request $request, Site $site): RedirectResponse
     {
-        //
+        $site->update([
+            'category_id' => $request->get('category_id'),
+            'slug' => $request->get('slug'),
+            'name' => $request->get('name'),
+            'document_type' => $request->get('document_type'),
+            'document' => $request->get('document'),
+        ]);
+        return redirect()->route('sites.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSiteRequest $request, Site $site)
+    public function show(Site $site): View
     {
-        //
+        return view('sites.show', compact('site'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Site $site)
+    public function destroy(Site $site, DeleteAction $deleteAction): RedirectResponse
     {
-        //
+        $deleteAction->execute($site);
+        return redirect()->route('sites.index');
     }
 }
