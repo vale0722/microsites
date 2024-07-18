@@ -19,6 +19,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('sites', SiteController::class)
+    ->names('sites')
     ->middleware(['auth', 'verified']);
+
+Route::resource('categories', \App\Http\Controllers\CategoryController::class)
+    ->names('categories');
 
 require __DIR__.'/auth.php';

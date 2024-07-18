@@ -14,7 +14,7 @@
             <table class="w-full my-0 align-middle text-dark border-neutral-200">
                 <thead class="align-bottom">
                 <tr class="font-semibold text-[0.95rem] text-secondary-dark">
-                    <th class="pb-3 text-start min-w-[175px]">{{ trans('sites.name') }}</th>
+                    <th class="pb-3 text-start min-w-[175px]">{{ trans('general.name') }}</th>
                     <th class="pb-3 text-start min-w-[100px]">{{ trans('sites.category') }}</th>
                     <th class="pb-3 text-start min-w-[100px]"></th>
                 </tr>
