@@ -2,12 +2,10 @@
 
 namespace App\Constants;
 
-enum DocumentTypes
+enum Currency
 {
-    case CC;
-    case NIT;
-    case CE;
-    case PPT;
+    case COP;
+    case USD;
 
     public static function toArray(): array
     {

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Constants\CategoryName;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CategoryFactory extends Factory

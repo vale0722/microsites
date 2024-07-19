@@ -5,12 +5,14 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
+        "php": "^8.2",
+        "cviebrock/eloquent-sluggable": "^11.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "spatie/laravel-permission": "^6.7"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.13",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.0",
         "laravel/pint": "^1.13",
@@ -46,7 +48,9 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
-        ]
+        ],
+        "format": "vendor/bin/pint",
+        "test": "XDEBUG_MODE=off vendor/bin/phpunit"
     },
     "extra": {
         "laravel": {

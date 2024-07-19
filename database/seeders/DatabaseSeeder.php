@@ -12,7 +12,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::where('email', 'admin@admin.com')
+            ->firstOr(function () {
+                return User::factory()->create([
+                    'name' => 'Administrator',
+                    'email' => 'admin@admin.com',
+                ]);
+            });
 
         User::factory()->create([
             'name' => 'Test User',

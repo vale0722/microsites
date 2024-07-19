@@ -4,5 +4,8 @@ return [
     'name' => 'Name',
     'store' => 'Create Category',
     'update' => 'Update Category',
-    'save' => 'Save'
+    'save' => 'Save',
+    'basic' => 'Basic',
+    'invoicing' => 'Invoicing',
+    'subscriptions' => 'Subscriptions',
 ];
