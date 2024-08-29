@@ -23,14 +23,9 @@
                     @foreach($imports as $import)
                         <tr class="border-b border-dashed last:border-b-0">
                             <td class="p-3 pl-0">
-                                <div class="flex items-center">
-                                    <a href="/"
-                                        class="transition ease-in-out delay-150 hover:scale-105 mb-1 text-start duration-200 text-lg/normal text-secondary-inverse hover:text-primary">
-                                        {{ $import->file_name }}
-                                    </a>
-                                </div>
+                                {{ $import->file_name }}
                             </td>
-                            <td class="p-3 pl-0 text-start">
+                            <td class="p-3 pl-0">
                                 <span class="text-light-inverse text-md/normal">{{ $import->status->text() }}</span>
                             </td>
                             <td class="flex justify-end p-3 pr-0 text-end gap-3">
