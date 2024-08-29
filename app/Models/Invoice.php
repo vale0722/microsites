@@ -18,10 +18,22 @@ class Invoice extends Model
         'description',
         'expired_at',
         'created_at',
+        'import_id',
     ];
 
     /**
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'expired_at' => 'date',
+            'created_at' => 'date',
+        ];
+    }
 }

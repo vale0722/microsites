@@ -16,6 +16,7 @@
                 <tr class="font-semibold text-[0.95rem] text-secondary-dark">
                     <th class="pb-3 text-start min-w-[175px]">{{ trans('sites.name') }}</th>
                     <th class="pb-3 text-start min-w-[100px]">{{ trans('sites.status') }}</th>
+                    <th class="pb-3 text-start min-w-[100px]">Elapsed time</th>
                     <th class="pb-3 text-start min-w-[100px]"></th>
                 </tr>
                 </thead>
@@ -27,6 +28,9 @@
                             </td>
                             <td class="p-3 pl-0">
                                 <span class="text-light-inverse text-md/normal">{{ $import->status->text() }}</span>
+                            </td>
+                            <td class="p-3 pl-0">
+                                {{ $import->created_at->diffInSeconds($import->updated_at) }}
                             </td>
                             <td class="flex justify-end p-3 pr-0 text-end gap-3">
                                 <a href="{{ route('admin.imports.show', $import) }}">

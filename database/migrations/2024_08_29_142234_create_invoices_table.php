@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('reference')->unique();
+            $table->string('reference', 40)->unique();
             $table->unsignedBigInteger('amount');
             $table->enum('currency', Currency::toArray());
             $table->string('customer_name', 100);
@@ -26,8 +26,8 @@ return new class extends Migration
                 ->references('id')
                 ->on('imports');
 
-            $table->dateTime('expired_at');
-            $table->dateTime('created_at');
+            $table->date('expired_at');
+            $table->date('created_at');
         });
     }
 

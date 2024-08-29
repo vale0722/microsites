@@ -44,20 +44,25 @@
                                 {{ $invoice->description }}
                             </td>
                             <td class="p-3 pl-0">
-                                {{ $invoice->expired_at }}
+                                {{ $invoice->expired_at->toDateString() }}
                             </td>
                             <td class="p-3 pl-0">
-                                {{ $invoice->created_at }}
+                                {{ $invoice->created_at->toDateString() }}
                             </td>
                             <td class="p-3 pl-0">
                                 <a href="{{ route('admin.imports.show', ['import' => $invoice->import_id]) }}">
-                                    See import
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
                                 </a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="flex w-full justify-center my-4">
+        <div class="container align-middle p-4 sm:p-6 lg:p-8 bg-white">
+            {{ $invoices->links() }}
         </div>
     </div>
 </x-app-layout>

@@ -20,6 +20,18 @@
                     <span class="block text-gray-700">{{ trans('sites.status') }}</span>
                     <p class="text-gray-900">{{ $import->status->text() }}</p>
                 </div>
+                <div class="m-8">
+                    <span class="block text-gray-700">{{ trans('sites.created_at') }}</span>
+                    <p class="text-gray-900">{{ $import->created_at }}</p>
+                </div>
+                <div class="m-8">
+                    <span class="block text-gray-700">{{ trans('sites.updated_at') }}</span>
+                    <p class="text-gray-900">{{ $import->updated_at }}</p>
+                </div>
+                <div class="m-8">
+                    <span class="block text-gray-700">Elapsep time</span>
+                    <p class="text-gray-900">{{ $import->created_at->diffInSeconds($import->updated_at) }}</p>
+                </div>
             </div>
         </div>
     </div>
@@ -30,7 +42,11 @@
                 @empty ($import->errors)
                     <p>There are no errors</p>
                 @else
-                    <pre>{{ $import->errors }}</pre>
+                    <ul>
+                        @foreach ($import->errors as $item)
+                            <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
                 @endempty
             </div>
         </div>
