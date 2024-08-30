@@ -91,11 +91,7 @@ class ProcessInvoiceFile implements ShouldQueue
 
             if ($this->isSuccessful()) {
                 $this->repository->updateInvoices($this->import->id);
-            }
 
-            if ($this->counter % 15000 === 0) {
-                dispatch(new NextJob($this->import, $this->counter));
-            } else {
                 $this->import->status = ImportStatus::COMPLETED;
                 $this->import->save();
             }
