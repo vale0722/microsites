@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Constants\ImportStatus;
+use App\Imports\InvoiceImportToCollection;
+use App\Imports\InvoiceImportToModel;
+use App\Jobs\ProcessInvoiceFile;
 use App\Models\Import;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel as Reader;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImportController extends Controller
 {
@@ -38,6 +43,10 @@ class ImportController extends Controller
         $import->status = ImportStatus::PENDING;
         $import->user()->associate(auth()->user());
         $import->save();
+
+        // Excel::import(new InvoiceImportToModel($import), $import->path, Import::DISK, Reader::CSV);
+        // Excel::import(new InvoiceImportToCollection($import), $import->path, Import::DISK, Reader::CSV);
+        dispatch(new ProcessInvoiceFile($import));
 
         return redirect()->route('admin.imports.show', $import);
     }

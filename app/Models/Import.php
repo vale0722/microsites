@@ -6,6 +6,7 @@ use App\Constants\ImportStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 class Import extends Model
 {
@@ -34,5 +35,10 @@ class Import extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getFullPath(): string
+    {
+        return Storage::disk(self::DISK)->path($this->path);
     }
 }
