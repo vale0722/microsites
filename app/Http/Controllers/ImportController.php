@@ -33,7 +33,7 @@ class ImportController extends Controller
         $path = $file->store(options: ['disk' => Import::DISK]);
 
         $import = new Import();
-        $import->path = Import::DISK.DIRECTORY_SEPARATOR.$path;
+        $import->path = $path;
         $import->file_name = $file->getClientOriginalName();
         $import->status = ImportStatus::PENDING;
         $import->user()->associate(auth()->user());
