@@ -4,9 +4,14 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Import No. {{ $import->id }}
             </h2>
-            <a href="{{ route('admin.imports.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
-                Imports
-            </a>
+            <div>
+                <a href="{{ route('admin.imports.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">
+                    <em class="fa-solid fa-arrow-left"></em> Back
+                </a>
+                <a href="{{ route('admin.imports.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
+                    <em class="fa-solid fa-plus"></em> Create
+                </a>
+            </div>
         </div>
     </x-slot>
     <div class="flex w-full justify-center my-4">

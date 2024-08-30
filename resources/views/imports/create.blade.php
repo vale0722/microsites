@@ -6,7 +6,7 @@
             </h1>
 
             <a href="{{ route('admin.imports.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
-                <em class="fa-solid fa-arrow-left"></em>
+                <em class="fa-solid fa-arrow-left"></em> Back
             </a>
         </div>
     </x-slot>

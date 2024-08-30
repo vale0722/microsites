@@ -5,7 +5,7 @@
                 Imports
             </h2>
             <a href="{{ route('admin.imports.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
-                <em class="fa-solid fa-plus"></em>
+                <em class="fa-solid fa-plus"></em> Create
             </a>
         </div>
     </x-slot>
